@@ -1,0 +1,25 @@
+# Compiled object files
+*.o
+
+# Compiled binary files
+*.exe
+*.out
+*.app
+
+# Backup files
+*~
+
+# Logs and databases
+*.log
+
+# Build directories
+/build/
+/bin/
+/obj/
+
+# macOS stuff
+.DS_Store
+
+# CLion or VSCode (if you use them)
+.idea/
+.vscode/
