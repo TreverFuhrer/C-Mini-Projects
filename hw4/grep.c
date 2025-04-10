@@ -1,7 +1,6 @@
 /*********************************************************************
 * Author: Trever Fuhrer
-* Created: 03/31grep Way sample.txt
-/25
+* Created: 03/31/25
 *
 * This program implements a simplified version of the Unix grep command.
 * It searches for a given pattern in a file and prints out any lines
