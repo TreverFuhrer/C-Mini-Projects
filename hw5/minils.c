@@ -1,8 +1,17 @@
+/*********************************************************************
+* Author: Trever Fuhrer
+* Created: 04/19/25
+*
+* Simplified version of 'ls' that supports -a and -R,
+* and prints sorted output like 'ls [flags] path | sort'.
+*********************************************************************/
+
 #include "utils.h"
 
 static char output[MAX_FILEPATHS][MAX_NAME_LEN];
 static int output_count = 0;
 
+// Adds a line to the output list
 void add_line(const char *line) {
     if (output_count >= MAX_FILEPATHS) return;
     strncpy(output[output_count], line, MAX_NAME_LEN - 1);
@@ -10,6 +19,7 @@ void add_line(const char *line) {
     output_count++;
 }
 
+// Recursively collects file names and headers
 void collect_recursive(const char *path, int include_hidden, int recursive) {
     DIR *dir = opendir(path);
     if (!dir) return;
@@ -45,8 +55,7 @@ void collect_recursive(const char *path, int include_hidden, int recursive) {
     if (!dir) return;
 
     while ((entry = readdir(dir)) != NULL) {
-        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-            continue;
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
         if (!include_hidden && entry->d_name[0] == '.') continue;
 
         char subpath[MAX_NAME_LEN];
@@ -62,6 +71,7 @@ void collect_recursive(const char *path, int include_hidden, int recursive) {
     closedir(dir);
 }
 
+// Parses flags and calls directory traversal
 void minils(int argc, char *argv[]) {
     int include_hidden = 0;
     int recursive = 0;
@@ -70,30 +80,36 @@ void minils(int argc, char *argv[]) {
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-a") == 0) {
             include_hidden = 1;
-        } else if (strcmp(argv[i], "-R") == 0) {
+        } 
+        else if (strcmp(argv[i], "-R") == 0) {
             recursive = 1;
-        } else if (argv[i][0] == '-') {
-            usage(); return;
-        } else {
+        } 
+        else if (argv[i][0] == '-') {
+            usage(); 
+            return;
+        } 
+        else {
             if (path != NULL) {
-                usage(); return;
+                usage(); 
+                return;
             }
             path = argv[i];
         }
     }
 
     if (path == NULL) {
-        usage(); return;
+        usage(); 
+        return;
     }
 
     DIR *check = opendir(path);
     if (!check) {
-        usage(); return;
+        usage(); 
+        return;
     }
     closedir(check);
 
     output_count = 0;
-
     collect_recursive(path, include_hidden, recursive);
 
     qsort(output, output_count, sizeof(output[0]), cmp);
