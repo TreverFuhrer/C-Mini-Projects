@@ -5,6 +5,10 @@
 int main(int argc, char *argv[]) {
     pid_t pid;
 
+    if (argc < 2) {
+        return 0;
+    }
+
     // === Child 1: Run ls ===
     pid = fork();
     if (pid < 0) {
