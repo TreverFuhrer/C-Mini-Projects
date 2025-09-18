@@ -2,3 +2,42 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_LINE 1024
+
+int main(int argc, char *argv[]) {
+    char prev[MAX_LINE + 2];
+    char curr[MAX_LINE + 2];
+    int count = 0;
+    int withCount = 0;
+    char *path = NULL;
+
+    if (argc == 2) {
+        path = argv[1];
+    }
+    else if (argc == 3 && strcmp(argv[1], "-c") == 0) {
+        withCount = 1;
+        path = argv[2];
+    }
+    else {
+        printf("Usage: ./myuniq [-c] <filename>\n");
+        return 1;
+    }
+
+    // Open file
+    FILE *file = fopen(path, "r");
+    if (!file) {
+        printf("myuniq: cannot open %s\n", path); 
+        return 1; 
+    }
+
+    //Check for read error
+    if (ferror(file)) { 
+        printf("myhead: read error\n"); 
+        fclose(file); 
+        return 1; 
+    }
+
+    // Close file
+    fclose(file);
+    return 0;
+}
