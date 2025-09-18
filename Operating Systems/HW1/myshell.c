@@ -41,11 +41,32 @@ int main(void) {
         }
         args[argc] = NULL;
 
+
         // Temp printing of args
         for (int i = 0; args[i] != NULL; i++) {
             printf("arg[%d] = '%s'\n", i, args[i]);
         }
         printf("\n");
+
+        // Check for output redirection
+        char *outfile = NULL;
+        for (int i = 0; i < argc; ++i) {
+            if (strcmp(args[i], "-o") == 0) {
+                if (i != argc - 2) {
+                    printf("Error: -o must be followed by a filename\n");
+                    break;
+                }
+                printf("Output redirection detected\n");
+                outfile = args[argc-1];
+                args[i] = NULL;
+                args[argc-1] = NULL;
+                break;
+            }
+        }
+
+        if (outfile) {
+            printf("\n");
+        }
 
         pid_t pid = fork();
 

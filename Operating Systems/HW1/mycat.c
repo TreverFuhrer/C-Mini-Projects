@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
         // Check for read error
         if (ferror(file)) { 
-            printf("mycat: read error"); 
+            printf("mycat: read error\n"); 
             fclose(file); 
             return 1; 
         }
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
         FILE *file1 = fopen(argv[1], "r");
         FILE *file2 = fopen(argv[2], "r");
         if (!file1 || !file2) {
-            printf("mycat: cannot open one of your files."); 
+            printf("mycat: cannot open one of your files.\n"); 
             return 1;
         }
 
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
         }
         // Check for file1 read error
         if (ferror(file1)) { 
-            printf("mycat: read error, cannot read file1"); 
+            printf("mycat: read error, cannot read file1\n"); 
             fclose(file1);
             return 1; 
         }
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
         }
         // Check for file2 read error
         if (ferror(file2)) { 
-            printf("mycat: read error, cannot read file2"); 
+            printf("mycat: read error, cannot read file2\n"); 
             fclose(file2);
             return 1; 
         }
