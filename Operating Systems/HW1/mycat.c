@@ -1,9 +1,23 @@
+/*********************************************************************
+* Author: Trever Fuhrer
+* Created: September 2025
+*
+* Program: mycat
+* Purpose: Display the contents of one file, or combine and display 
+*          the contents of two files. Works like a simplified version
+*          of the Unix `cat` command.
+* Usage:   ./mycat filename
+*          ./mycat file1 file2
+**********************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_LINE 1024
+
 int main(int argc, char *argv[]) {
-    char buffer[1026];
+    char buffer[MAX_LINE + 2];
 
     if (argc == 2) {
         // Open file

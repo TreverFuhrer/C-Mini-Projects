@@ -4,11 +4,13 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+#define MAX_LINE 1024
+#define MAX_ARGS 100
+
 int main(void) {
-    char buffer[1024];
+    char buffer[MAX_LINE + 2];
+    char *args[MAX_ARGS];
     char *token;
-    char *args[100];
-    
 
     while (1) {
         int argc = 0;
