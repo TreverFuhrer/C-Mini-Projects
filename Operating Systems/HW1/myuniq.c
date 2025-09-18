@@ -30,9 +30,28 @@ int main(int argc, char *argv[]) {
         return 1; 
     }
 
+    // Read first line
+    while (fgets(curr, sizeof(curr), file) != NULL) {
+        if (strcmp(curr, prev) == 0) {
+            count++;
+        } 
+        else {
+            if (count > 0) {
+                if (withCount) {
+                    printf("%d %s", count + 1, prev);
+                } 
+                else {
+                    printf("%s", prev);
+                }
+            }
+            strcpy(prev, curr);
+            count = 0;
+        }
+    }
+
     //Check for read error
     if (ferror(file)) { 
-        printf("myhead: read error\n"); 
+        printf("myuniq: read error\n"); 
         fclose(file); 
         return 1; 
     }
