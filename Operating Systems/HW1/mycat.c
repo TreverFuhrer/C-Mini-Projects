@@ -1,13 +1,7 @@
 /*********************************************************************
-* Author: Trever Fuhrer
-* Created: September 2025
-*
-* Program: mycat
-* Purpose: Display the contents of one file, or combine and display 
-*          the contents of two files. Works like a simplified version
-*          of the Unix `cat` command.
-* Usage:   ./mycat filename
-*          ./mycat file1 file2
+* Author: Trever J. Fuhrer, September 2025
+* mycat: print contents of one or two files, like a simple cat.
+* Usage: ./mycat <file1> [file2]
 **********************************************************************/
 
 #include <stdio.h>

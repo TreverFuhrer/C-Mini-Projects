@@ -1,3 +1,9 @@
+/*********************************************************************
+* Author: Trever J. Fuhrer, September 2025
+* myuniq: collapse adjacent duplicate lines; with -c, print counts.
+* Usage: ./myuniq [-c] <filename>
+**********************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

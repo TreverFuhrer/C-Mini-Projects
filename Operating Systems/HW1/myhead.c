@@ -1,3 +1,9 @@
+/*********************************************************************
+* Author: Trever J. Fuhrer, September 2025
+* myhead: print the first 3 lines of a file.
+* Usage: ./myhead <filename>
+**********************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

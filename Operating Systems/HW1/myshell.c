@@ -1,3 +1,9 @@
+/*********************************************************************
+* Author: Trever J. Fuhrer, September 2025
+* myshell: simple shell that runs commands and supports "-o" redirection.
+* Usage: ./myshell  (type "exit" to quit)
+**********************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
