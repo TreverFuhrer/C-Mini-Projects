@@ -7,6 +7,7 @@
 int main(int argc, char *argv[]) {
     char prev[MAX_LINE + 2];
     char curr[MAX_LINE + 2];
+    int have_prev = 0;
     int count = 0;
     int withCount = 0;
     char *path = NULL;
@@ -30,30 +31,44 @@ int main(int argc, char *argv[]) {
         return 1; 
     }
 
-    // Read first line
-    while (fgets(curr, sizeof(curr), file) != NULL) {
-        if (strcmp(curr, prev) == 0) {
-            count++;
-        } 
-        else {
-            if (count > 0) {
-                if (withCount) {
-                    printf("%d %s", count + 1, prev);
-                } 
-                else {
-                    printf("%s", prev);
-                }
-            }
-            strcpy(prev, curr);
-            count = 0;
-        }
-    }
-
     //Check for read error
     if (ferror(file)) { 
         printf("myuniq: read error\n"); 
         fclose(file); 
         return 1; 
+    }
+
+    // Read first line
+    while (fgets(curr, sizeof(curr), file) != NULL) {
+        if (!have_prev) {
+            strcpy(prev, curr);
+            have_prev = 1;
+            count = 1;
+            continue;
+        }
+
+        if (strcmp(curr, prev) == 0) {
+            count++;
+        } 
+        else {
+            if (withCount) {
+                printf("%d %s\n", count, prev);
+            } 
+            else {
+                fputs(prev, stdout);
+            }
+            strcpy(prev, curr);
+            count = 1;
+        }
+    }
+
+    if (have_prev) {
+        if (withCount) {
+            printf("%d %s\n", count, prev);
+        } 
+        else {
+            fputs(prev, stdout);
+        }
     }
 
     // Close file
