@@ -13,7 +13,7 @@
 int main(int argc, char *argv[]) {
     char buffer[MAX_LINE + 2];
 
-    if (argc < 2) {
+    if (argc != 2) {
         printf("Usage: ./myhead <filename>\n");
         return 1;
     }

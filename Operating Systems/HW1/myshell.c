@@ -54,7 +54,6 @@ int main(void) {
                     bad_output = 1;
                     break;
                 }
-                printf("Output redirection detected\n");
                 outfile = args[argc-1];
                 args[i] = NULL;
                 args[argc-1] = NULL;

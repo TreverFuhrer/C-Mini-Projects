@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
         } 
         else {
             if (withCount) {
-                printf("%d %s\n", count, prev);
+                printf("%d %s", count, prev);
             } 
             else {
                 fputs(prev, stdout);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 
     if (have_prev) {
         if (withCount) {
-            printf("%d %s\n", count, prev);
+            printf("%d %s", count, prev);
         } 
         else {
             fputs(prev, stdout);

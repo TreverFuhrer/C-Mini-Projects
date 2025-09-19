@@ -41,6 +41,8 @@ int main(int argc, char *argv[]) {
         FILE *file1 = fopen(argv[1], "r");
         FILE *file2 = fopen(argv[2], "r");
         if (!file1 || !file2) {
+            if (file1) fclose(file1);
+            if (file2) fclose(file2);
             printf("mycat: cannot open one of your files.\n"); 
             return 1;
         }
@@ -72,7 +74,7 @@ int main(int argc, char *argv[]) {
         fclose(file2);
     }
     else {
-        printf("Must have at least 2 args Ex: ./mycat file or ./mycat file1 file2\n"); 
+        printf("Usage: ./mycat <filename>\n./mycat <file1> <file2>\n"); 
         return 1; 
     }
 
